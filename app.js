@@ -13,6 +13,9 @@ app.use(express.static("public"));
 app.get("/",function(req,res){
     res.sendFile(__dirname+"/signup.html");
 })
+
+
+
 app.post("/",(req,res)=>{
         const fname = req.body.fname
         const lname = req.body.lname
@@ -31,6 +34,7 @@ app.post("/",(req,res)=>{
  
         }]
        }
+
        const jsonData = JSON.stringify(data)
 
         const url = "https://us14.api.mailchimp.com/3.0/lists/82a0e6cf94";
@@ -50,7 +54,7 @@ app.post("/",(req,res)=>{
             }
 
              response.on("data", (data)=>{
-                   console.log(JSON.parse(data))
+                  
              })
         })
  
