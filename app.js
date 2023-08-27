@@ -13,9 +13,6 @@ app.use(express.static("public"));
 app.get("/",function(req,res){
     res.sendFile(__dirname+"/signup.html");
 })
-
-
-
 app.post("/",(req,res)=>{
         const fname = req.body.fname
         const lname = req.body.lname
@@ -34,13 +31,12 @@ app.post("/",(req,res)=>{
  
         }]
        }
-
        const jsonData = JSON.stringify(data)
 
         const url = "https://us14.api.mailchimp.com/3.0/lists/82a0e6cf94";
         const options ={
              method: "POST",
-             auth: "pritam1:80521ffd7930993c6c554c9781c8b015-us14"
+             auth: "pritam1:c3485262be3863d1577990d6001fe8ab-us14"
         }
 
         const request = https.request(url,options,function(response){
@@ -54,7 +50,7 @@ app.post("/",(req,res)=>{
             }
 
              response.on("data", (data)=>{
-                  
+                   console.log(JSON.parse(data))
              })
         })
  
@@ -65,10 +61,6 @@ app.post("/",(req,res)=>{
 })
 
 
-
-app.post("/failure", (req,res)=>{
-    res.redirect("/")
-})
 
 
 
@@ -81,7 +73,7 @@ app.listen(process.env.PORT||3000,function(){
 })
 
 
-// 80521ffd7930993c6c554c9781c8b015-us14
+// c3485262be3863d1577990d6001fe8ab-us14
 
 // list Id
 // 82a0e6cf94
